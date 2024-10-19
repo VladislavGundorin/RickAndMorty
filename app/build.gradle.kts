@@ -53,3 +53,12 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.1.0")
 }
+dependencies {
+    val fragmentVersion = "1.8.3"
+
+    implementation("androidx.fragment:fragment:$fragmentVersion")
+
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+}
+
+
