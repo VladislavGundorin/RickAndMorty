@@ -8,8 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
+import com.example.rickandmorty.databinding.FragmentChatBinding
 
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
+    private var _binding: FragmentChatBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var chatAdapter: ChatAdapter
     private val chatList = listOf(
@@ -22,14 +26,20 @@ class HomeFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_chat, container, false)
+        _binding = FragmentChatBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        recyclerView = view.findViewById(R.id.recyclerView)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         chatAdapter = ChatAdapter(chatList)
+        binding.recyclerView.adapter = chatAdapter
+    }
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = chatAdapter
-
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

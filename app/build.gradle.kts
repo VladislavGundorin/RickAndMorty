@@ -1,11 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "com.example.rickandmorty"
     compileSdk = 34
+
+    viewBinding {
+            enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.rickandmorty"
@@ -60,5 +65,8 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
 }
-
-
+dependencies {
+    val nav_version = "2.8.1"
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+}

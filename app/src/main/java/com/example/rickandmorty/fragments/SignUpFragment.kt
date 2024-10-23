@@ -4,36 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.rickandmorty.R
+import androidx.navigation.fragment.findNavController
+import com.example.rickandmorty.databinding.FragmentSignUpBinding
 import com.example.rickandmorty.models.User
 
-class SignUpFragment: Fragment() {
+class SignUpFragment : Fragment() {
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val editTextEmail = view.findViewById<EditText>(R.id.editTextEmail)
-        val editTextPassword = view.findViewById<EditText>(R.id.editTextPassword)
-        val editTextConfirmPassword = view.findViewById<EditText>(R.id.editTextConfirmPassword)
-        val buttonRegister = view.findViewById<Button>(R.id.buttonRegister)
-
-
-        buttonRegister.setOnClickListener {
-            val email = editTextEmail.text.toString()
-            val password = editTextPassword.text.toString()
-            val confirmPassword = editTextConfirmPassword.text.toString()
+        binding.buttonRegister.setOnClickListener {
+            val email = binding.editTextEmail.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            val confirmPassword = binding.editTextConfirmPassword.text.toString()
 
             if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(context, "Поля не могут быть пустыми", Toast.LENGTH_SHORT).show()
@@ -42,19 +38,18 @@ class SignUpFragment: Fragment() {
 
             if (password == confirmPassword) {
                 val user = User(email, password)
-                val bundle = Bundle().apply {
-                    putSerializable("user", user)
-                }
-
-                val signInFragment = SignInFragment().apply {
-                    arguments = bundle
-                }
+                val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment(user)
 
                 Toast.makeText(context, "Регистрация успешна", Toast.LENGTH_SHORT).show()
-                (activity as MainActivity).navigateToFragment(signInFragment)
+                findNavController().navigate(action)
             } else {
                 Toast.makeText(context, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
