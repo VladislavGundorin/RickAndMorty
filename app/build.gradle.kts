@@ -57,6 +57,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("io.coil-kt:coil-compose:2.1.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+//    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+//    implementation ("com.squareup.retrofit2:converter-kotlinx-serialization:0.8.0")
+
+
 }
 dependencies {
     val fragmentVersion = "1.8.3"

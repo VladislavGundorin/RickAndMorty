@@ -1,43 +1,86 @@
 package com.example.rickandmorty.fragments
 
+//import android.view.LayoutInflater
+//import android.view.View
+//import android.view.ViewGroup
+//import android.widget.TextView
+//import androidx.recyclerview.widget.RecyclerView
+//import com.example.rickandmorty.R
+//import com.example.rickandmorty.models.RickMorty
+//
+//class CharacterAdapter(private val characters: List<RickMorty>) :
+//    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+//        val view = LayoutInflater.from(parent.context).inflate(R.layout.character_name, parent, false)
+//        return CharacterViewHolder(view)
+//    }
+//
+//    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+//        val character = characters[position]
+//        holder.name.text = character.name
+//        holder.status.text = character.status
+//        holder.species.text = character.species
+//        holder.gender.text = character.gender
+//        holder.origin.text = character.origin.name
+//        holder.location.text = character.location.name
+//    }
+//
+//    override fun getItemCount(): Int = characters.size
+//
+//    class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        val name: TextView = itemView.findViewById(R.id.character_name)
+//        val status: TextView = itemView.findViewById(R.id.character_status)
+//        val species: TextView = itemView.findViewById(R.id.character_species)
+//        val gender: TextView = itemView.findViewById(R.id.character_gender)
+//        val origin: TextView = itemView.findViewById(R.id.character_origin)
+//        val location: TextView = itemView.findViewById(R.id.character_location)
+//    }
+//}
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
+import com.example.rickandmorty.models.RickMorty
 
-data class Chat(
-    val senderName: String,
-    val lastMessage: String,
-    val messageTime: String,
-    val profileImageRes: Int
-)
+class CharacterAdapter(private val characters: List<RickMorty>) :
+    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
-class ChatAdapter(private val chatList: List<Chat>) :
-    RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.chat_item, parent, false)
-        return ChatViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.character_name, parent, false)
+        return CharacterViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        val chat = chatList[position]
-        holder.senderName.text = chat.senderName
-        holder.lastMessage.text = chat.lastMessage
-        holder.messageTime.text = chat.messageTime
-        holder.profileImage.setImageResource(chat.profileImageRes)
+    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+        val character = characters[position]
+
+        holder.id.text = "ID: ${character.id}"
+        holder.name.text = character.name
+        holder.status.text = character.status
+        holder.species.text = character.species
+        holder.gender.text = character.gender
+        holder.origin.text = character.origin.name
+        holder.location.text = character.location.name
+
+        Glide.with(holder.itemView.context)
+            .load(character.image)
+            .into(holder.image)
     }
 
-    override fun getItemCount(): Int = chatList.size
+    override fun getItemCount(): Int = characters.size
 
-    class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val senderName: TextView = itemView.findViewById(R.id.sender_name)
-        val lastMessage: TextView = itemView.findViewById(R.id.last_message)
-        val messageTime: TextView = itemView.findViewById(R.id.message_time)
-        val profileImage: ImageView = itemView.findViewById(R.id.profile_image)
+    class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image: ImageView = itemView.findViewById(R.id.character_image)
+        val id: TextView = itemView.findViewById(R.id.character_id)
+        val name: TextView = itemView.findViewById(R.id.character_name)
+        val status: TextView = itemView.findViewById(R.id.character_status)
+        val species: TextView = itemView.findViewById(R.id.character_species)
+        val gender: TextView = itemView.findViewById(R.id.character_gender)
+        val origin: TextView = itemView.findViewById(R.id.character_origin)
+        val location: TextView = itemView.findViewById(R.id.character_location)
     }
 }

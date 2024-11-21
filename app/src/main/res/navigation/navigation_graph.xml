@@ -26,8 +26,8 @@
             app:nullable="true"
             android:defaultValue="@null" />
         <action
-            android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
+            android:id="@+id/action_signInFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment"
             />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -45,9 +45,8 @@
             />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.rickandmorty.fragments.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_chat">
-        </fragment>
+        android:id="@+id/characterListFragment"
+        android:name="com.example.rickandmorty.fragments.CharacterListFragment"
+        android:label="CharacterListFragment"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

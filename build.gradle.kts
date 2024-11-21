@@ -4,3 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     id("androidx.navigation.safeargs") version "2.8.1" apply false
 }
+//plugins {
+//    id ("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+//}

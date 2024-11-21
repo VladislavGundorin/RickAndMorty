@@ -42,7 +42,7 @@ class SignInFragment : Fragment() {
 
             if (email == user?.email && password == user?.password) {
                 Toast.makeText(context, "Вход успешен", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_signInFragment_to_characterListFragment)
             } else {
                 Toast.makeText(context, "Неверный email или пароль", Toast.LENGTH_SHORT).show()
             }

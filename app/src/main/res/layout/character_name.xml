@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Отображение изображения персонажа -->
+    <ImageView
+        android:id="@+id/character_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/character_image" />
+
+    <!-- Отображение ID -->
+    <TextView
+        android:id="@+id/character_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: 0"
+        android:textSize="12sp"/>
+
+    <!-- Отображение имени -->
+    <TextView
+        android:id="@+id/character_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="18sp"/>
+
+    <!-- Отображение статуса -->
+    <TextView
+        android:id="@+id/character_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="16sp"/>
+
+    <!-- Отображение вида -->
+    <TextView
+        android:id="@+id/character_species"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Species"
+        android:textSize="14sp"/>
+
+    <!-- Отображение пола -->
+    <TextView
+        android:id="@+id/character_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:textSize="14sp"/>
+
+    <!-- Отображение происхождения -->
+    <TextView
+        android:id="@+id/character_origin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Origin"
+        android:textSize="14sp"/>
+
+    <!-- Отображение местоположения -->
+    <TextView
+        android:id="@+id/character_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="14sp"/>
+</LinearLayout>

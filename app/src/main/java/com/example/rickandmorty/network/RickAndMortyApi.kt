@@ -5,8 +5,8 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-
 interface RickAndMortyApi {
-    @GET("character/{id}")
-    fun getCharacter(@Path("id") characterId: Int): Call<RickMorty>
+    @GET("character/{ids}")
+    fun getCharactersByIds(@Path("ids") ids: String): Call<List<RickMorty>>
+
 }
