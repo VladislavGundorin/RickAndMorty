@@ -1,7 +1,8 @@
 package com.example.rickandmorty.models
 
-import java.io.Serializable
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class RickMorty(
     val id: Int,
     val name: String,
@@ -11,12 +12,14 @@ data class RickMorty(
     val origin: Origin,
     val location: Location,
     val image: String
-) : Serializable
+)
 
+@Serializable
 data class Origin(
     val name: String
-) : Serializable
+)
 
+@Serializable
 data class Location(
     val name: String
-) : Serializable
+)

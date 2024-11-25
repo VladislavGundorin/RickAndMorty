@@ -1,10 +1,8 @@
 package com.example.rickandmorty.models
 
-data class CharacterResponse(
-    val results: List<RickMorty>,
-    val info: Info
-)
+import kotlinx.serialization.Serializable
 
-data class Info(
-    val next: String?
+@Serializable
+data class CharacterResponse(
+    val results: List<RickMorty>
 )

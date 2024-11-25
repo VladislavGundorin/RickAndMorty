@@ -1,18 +1,18 @@
 package com.example.rickandmorty.fragments
 
 import android.os.Bundle
-import retrofit2.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.models.RickMorty
 import com.example.rickandmorty.repository.RickMortyRepository
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
 class CharacterListFragment : Fragment() {
 
@@ -40,25 +40,18 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun loadCharacters() {
-        val ids = (201..250).toList()
-
-        for (id in ids) {
-            repository.getCharactersByIds((201..250).joinToString(",")).enqueue(object : retrofit2.Callback<List<RickMorty>> {
-                override fun onResponse(call: Call<List<RickMorty>>, response: Response<List<RickMorty>>) {
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            characters.addAll(it)
-                            adapter.notifyDataSetChanged()
-                        }
-                    } else {
-                        Toast.makeText(context, "Ошибка: ${response.code()}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<List<RickMorty>>, t: Throwable) {
-                    Toast.makeText(context, "Ошибка загрузки данных: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+        val ids = (201..250).joinToString(",")
+        lifecycleScope.launch {
+            try {
+                val loadedCharacters = repository.getCharactersByIds(ids)
+                characters.clear()
+                characters.addAll(loadedCharacters)
+                adapter.notifyDataSetChanged()
+                Toast.makeText(context, "Данные загружены: ${loadedCharacters.size}", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Ошибка загрузки данных: ${e.message}", Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
+            }
         }
     }
-    }
+}
