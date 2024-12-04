@@ -30,6 +30,9 @@
             app:destination="@id/characterListFragment"
             />
         <action
+            android:id="@+id/action_signInFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             />
@@ -48,5 +51,13 @@
         android:id="@+id/characterListFragment"
         android:name="com.example.rickandmorty.fragments.CharacterListFragment"
         android:label="CharacterListFragment"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat">
+    <deepLink app:uri="android-app://com.example.rickandmorty/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.rickandmorty.fragments.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings"/>
+    <deepLink app:uri="android-app://com.example.rickandmorty/settings" />
 </navigation>

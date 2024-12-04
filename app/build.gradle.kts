@@ -79,3 +79,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
 }
+dependencies {
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+}

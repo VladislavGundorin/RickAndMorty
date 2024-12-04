@@ -4,4 +4,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_green">#00FF00</color>
 
+    <color name="primary_color">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary_color">#03DAC6</color>
+
+    <color name="primary_color_dark">#BB86FC</color>
+    <color name="primary_variant_dark">#3700B3</color>
+    <color name="secondary_color_dark">#03DAC6</color>
 </resources>

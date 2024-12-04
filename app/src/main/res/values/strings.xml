@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
     <string name="character_image">Character Image</string>
+    <string name="drawer_open">Открыть меню</string>
+    <string name="drawer_close">Закрыть меню</string>
+
 </resources>
