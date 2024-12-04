@@ -4,6 +4,8 @@
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorSecondary">@color/secondary_color</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
     <style name="Theme.RickAndMorty" parent="Base.Theme.RickAndMorty" />
 </resources>
