@@ -12,6 +12,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import com.example.rickandmorty.database.RickMortyApp
+import com.example.rickandmorty.database.toRickMorty
 import com.example.rickandmorty.databinding.FragmentSettingsBinding
 import com.example.rickandmorty.models.RickMorty
 import com.example.rickandmorty.repository.RickMortyRepository
@@ -115,8 +117,7 @@ class SettingsFragment : Fragment() {
                     writer.write(
                         "ID: ${character.id}, Name: ${character.name}, " +
                                 "Status: ${character.status}, Species: ${character.species}, " +
-                                "Gender: ${character.gender}, Origin: ${character.origin.name}, " +
-                                "Location: ${character.location.name}\n"
+                                "Gender: ${character.gender}"
                     )
                 }
             }
@@ -192,11 +193,20 @@ class SettingsFragment : Fragment() {
         }
     }
 
+//    private suspend fun loadCharactersFromRepository(): List<RickMorty> {
+//        val repository = RickMortyRepository()
+//        return try {
+//            val ids = (201..250).joinToString(",")
+//            repository.getCharactersByIds(ids)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            emptyList()
+//        }
+//    }
     private suspend fun loadCharactersFromRepository(): List<RickMorty> {
-        val repository = RickMortyRepository()
+        val repository = (requireActivity().application as RickMortyApp).repository
         return try {
-            val ids = (201..250).joinToString(",")
-            repository.getCharactersByIds(ids)
+            repository.getCharactersFromDb().first().map { it.toRickMorty() }
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()

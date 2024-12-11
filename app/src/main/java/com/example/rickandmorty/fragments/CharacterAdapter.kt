@@ -34,8 +34,6 @@ class CharacterAdapter(private val characters: List<RickMorty>) :
                 characterStatus.text = character.status
                 characterSpecies.text = character.species
                 characterGender.text = character.gender
-                characterOrigin.text = character.origin.name
-                characterLocation.text = character.location.name
 
                 Glide.with(root.context)
                     .load(character.image)
